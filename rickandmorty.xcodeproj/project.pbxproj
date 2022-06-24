@@ -23,6 +23,7 @@
 		F51802282865FB1000B5F3F0 /* LocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51802272865FB1000B5F3F0 /* LocationResponse.swift */; };
 		F518022A2865FC1C00B5F3F0 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51802292865FC1C00B5F3F0 /* LocationModel.swift */; };
 		F541C00528660D1D008C3D54 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541C00428660D1D008C3D54 /* ImageCacheManager.swift */; };
+		F541C00728660E5E008C3D54 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541C00628660E5E008C3D54 /* ImageLoader.swift */; };
 		F58B52EF286607F3001F955D /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B52EE286607F3001F955D /* CharacterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		F51802272865FB1000B5F3F0 /* LocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponse.swift; sourceTree = "<group>"; };
 		F51802292865FC1C00B5F3F0 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		F541C00428660D1D008C3D54 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		F541C00628660E5E008C3D54 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F58B52EE286607F3001F955D /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,7 @@
 			children = (
 				F518021C2865F47D00B5F3F0 /* Constants.swift */,
 				F541C00428660D1D008C3D54 /* ImageCacheManager.swift */,
+				F541C00628660E5E008C3D54 /* ImageLoader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				F58B52EF286607F3001F955D /* CharacterTableViewCell.swift in Sources */,
 				F51802222865F91E00B5F3F0 /* CharacterModelDelegate.swift in Sources */,
+				F541C00728660E5E008C3D54 /* ImageLoader.swift in Sources */,
 				F51802012865EF9600B5F3F0 /* ViewController.swift in Sources */,
 				F51802262865F9C300B5F3F0 /* Location.swift in Sources */,
 				F51802282865FB1000B5F3F0 /* LocationResponse.swift in Sources */,

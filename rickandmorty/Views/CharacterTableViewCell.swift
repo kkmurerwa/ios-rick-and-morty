@@ -42,47 +42,46 @@ class CharacterTableViewCell: UITableViewCell {
         // Set char name
         self.nameLabel.text = character!.name
         self.genderLabel.text = character!.gender
-        self.speciesLabel.text = "\(character!.gender) - \(character!.status)"
+        self.speciesLabel.text = "\(character!.species) - \(character!.status)"
         
-        // Load and display image
         // Check image cache before downloading data
         if let cachedData = ImageCacheManager.getImageCache(self.character!.imageUrl) {
-            
+
             // Set the thumbnailImageView from cache
             self.characterImage.image = UIImage(data: cachedData)
-            
+
             return
         }
         
         // Download the thumbnail data
         let thumbnailUrl = URL(string: self.character!.imageUrl)
-        
+
         // Get the shared url session objetc
         let session = URLSession.shared
-        
+
         // Create Data task
         let dataTask = session.dataTask(with: thumbnailUrl!) { (data, response, error) in
-            
+
             if error == nil && data != nil {
                 // Check that downloaded URL matches the video thumbnail url
                 if thumbnailUrl!.absoluteString != self.character?.imageUrl {
                     // Video cell has been recycled for another video and no longer matches downloaded url
                     return
                 }
-                
+
                 // Create the image object
                 let image = UIImage(data: data!)
-                
+
                 ImageCacheManager.setImageCache(thumbnailUrl!.absoluteString, data)
-                
+
                 // Set the image object to imageview in main thread
                 DispatchQueue.main.async {
                     self.characterImage.image = image
                 }
             }
-            
+
         }
-        
+
         // Initialize data task
         dataTask.resume()
     }

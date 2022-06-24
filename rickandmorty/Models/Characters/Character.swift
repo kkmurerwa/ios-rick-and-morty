@@ -21,6 +21,7 @@ struct Character : Decodable {
         case characterId = "id"
         case name
         case status
+        case species
         case gender
         case imageUrl = "image"
         
@@ -35,6 +36,8 @@ struct Character : Decodable {
         self.name = try container.decode(String.self, forKey: .name)
         
         self.status = try container.decode(String.self, forKey: .status)
+        
+        self.species = try container.decode(String.self, forKey: .species)
         
         self.gender = try container.decode(String.self, forKey: .gender)
         
