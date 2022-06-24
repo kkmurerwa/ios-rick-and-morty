@@ -22,6 +22,8 @@
 		F51802262865F9C300B5F3F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51802252865F9C300B5F3F0 /* Location.swift */; };
 		F51802282865FB1000B5F3F0 /* LocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51802272865FB1000B5F3F0 /* LocationResponse.swift */; };
 		F518022A2865FC1C00B5F3F0 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51802292865FC1C00B5F3F0 /* LocationModel.swift */; };
+		F541C00528660D1D008C3D54 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541C00428660D1D008C3D54 /* ImageCacheManager.swift */; };
+		F58B52EF286607F3001F955D /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B52EE286607F3001F955D /* CharacterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		F51802252865F9C300B5F3F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F51802272865FB1000B5F3F0 /* LocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponse.swift; sourceTree = "<group>"; };
 		F51802292865FC1C00B5F3F0 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		F541C00428660D1D008C3D54 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		F58B52EE286607F3001F955D /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		F51802122865EFBB00B5F3F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F58B52EE286607F3001F955D /* CharacterTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,12 +128,8 @@
 		F51802142865EFE300B5F3F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F51802172865F17D00B5F3F0 /* Character.swift */,
-				F51802192865F3F800B5F3F0 /* CharacterResponse.swift */,
-				F518021E2865F52700B5F3F0 /* CharacterModel.swift */,
-				F51802252865F9C300B5F3F0 /* Location.swift */,
-				F51802272865FB1000B5F3F0 /* LocationResponse.swift */,
-				F51802292865FC1C00B5F3F0 /* LocationModel.swift */,
+				F58B52ED286604C5001F955D /* Locations */,
+				F58B52EC286604AF001F955D /* Characters */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				F518021C2865F47D00B5F3F0 /* Constants.swift */,
+				F541C00428660D1D008C3D54 /* ImageCacheManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -156,6 +158,26 @@
 				F51802232865F97300B5F3F0 /* LocationModelDelegate.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F58B52EC286604AF001F955D /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				F51802172865F17D00B5F3F0 /* Character.swift */,
+				F51802192865F3F800B5F3F0 /* CharacterResponse.swift */,
+				F518021E2865F52700B5F3F0 /* CharacterModel.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		F58B52ED286604C5001F955D /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				F51802252865F9C300B5F3F0 /* Location.swift */,
+				F51802272865FB1000B5F3F0 /* LocationResponse.swift */,
+				F51802292865FC1C00B5F3F0 /* LocationModel.swift */,
+			);
+			path = Locations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58B52EF286607F3001F955D /* CharacterTableViewCell.swift in Sources */,
 				F51802222865F91E00B5F3F0 /* CharacterModelDelegate.swift in Sources */,
 				F51802012865EF9600B5F3F0 /* ViewController.swift in Sources */,
 				F51802262865F9C300B5F3F0 /* Location.swift in Sources */,
@@ -236,6 +259,7 @@
 				F518022A2865FC1C00B5F3F0 /* LocationModel.swift in Sources */,
 				F51802242865F97300B5F3F0 /* LocationModelDelegate.swift in Sources */,
 				F51801FD2865EF9600B5F3F0 /* AppDelegate.swift in Sources */,
+				F541C00528660D1D008C3D54 /* ImageCacheManager.swift in Sources */,
 				F518021A2865F3F900B5F3F0 /* CharacterResponse.swift in Sources */,
 				F51801FF2865EF9600B5F3F0 /* SceneDelegate.swift in Sources */,
 				F51802182865F17D00B5F3F0 /* Character.swift in Sources */,

@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, CharacterModelDelegate, LocationModelDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CharacterModelDelegate, LocationModelDelegate {
+    
+    @IBOutlet weak var charactersTableView: UITableView!
     
     var characterModel = CharacterModel()
     var locationModel = LocationModel()
@@ -17,20 +19,27 @@ class ViewController: UIViewController, CharacterModelDelegate, LocationModelDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set table view data source and delegate as the viewcontroller(self)
+        charactersTableView.dataSource = self
+        charactersTableView.delegate = self
+        
         
         // Set model delegate as viewcontroller(self)
         characterModel.delegate = self
         
-        // Get all details
+        // Invoke fetch data method of models
         characterModel.getCharacters()
-//        locationModel.getLocations()
         
     }
+    
+    // MARK: - Network call response methods
     
     func charactersFetched(_ characters: [Character]) {
         
         // Set the returned characters to our characters property
         self.characters = characters
+        
+        charactersTableView.reloadData()
         
     }
     
@@ -40,6 +49,31 @@ class ViewController: UIViewController, CharacterModelDelegate, LocationModelDel
         self.locations = locations
     }
 
+    // MARK: - TableView methods
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return characters.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CHARACTER_CELL_ID, for: indexPath) as! CharacterTableViewCell
+        
+        
+        // Configure the cell with the data
+        
+        // Get title for current video
+        let character = self.characters[indexPath.row]
+        
+        cell.setCell(character)
+        
+        // Return the cell for displaying
+        return cell
+    }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }
 
