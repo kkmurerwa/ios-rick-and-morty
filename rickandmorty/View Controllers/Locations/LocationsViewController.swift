@@ -7,23 +7,31 @@
 
 import UIKit
 
-class LocationsViewController: UIViewController {
+class LocationsViewController: UIViewController, LocationModelDelegate {
 
+    var model = LocationModel()
+    
+    var locations = [Location]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Set model delegate as viewcontroller(self)
+        model.delegate = self
+        
+        // Invoke fetch data method of models
+        model.getLocations()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - Network call response methods
+    
+    func locationsFetched(_ locations: [Location]) {
+        
+        // Set the returned locations to our locations property
+        self.locations = locations
+        
     }
-    */
 
 }

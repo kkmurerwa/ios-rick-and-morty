@@ -7,15 +7,13 @@
 
 import UIKit
 
-class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CharacterModelDelegate, LocationModelDelegate {
+class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CharacterModelDelegate {
     
     @IBOutlet weak var charactersTableView: UITableView!
     
-    var characterModel = CharacterModel()
-    var locationModel = LocationModel()
+    var model = CharacterModel()
     
     var characters = [Character]()
-    var locations = [Location]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +23,10 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         
         
         // Set model delegate as viewcontroller(self)
-        characterModel.delegate = self
+        model.delegate = self
         
         // Invoke fetch data method of models
-        characterModel.getCharacters()
+        model.getCharacters()
         
     }
     
@@ -43,11 +41,9 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         
         // Get a reference to the character that was tapped on
         let selectedCharacter = characters[charactersTableView.indexPathForSelectedRow!.row]
-        
     
         // Get a reference to the detail view controller
         let detailViewController = segue.destination as! CharacterDetailViewController
-        
         
         // Set the character property of the detail view controller
         detailViewController.character = selectedCharacter
@@ -63,12 +59,6 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         
         charactersTableView.reloadData()
         
-    }
-    
-    func locationsFetched(_ locations: [Location]) {
-        
-        // Set the returned locations to our locations property
-        self.locations = locations
     }
 
     // MARK: - TableView methods
