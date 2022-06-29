@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="40" width="414" height="812"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CharacterCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharacterCell" id="rxw-iW-LZd" customClass="CharacterTableViewCell" customModule="rickandmorty" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CharacterCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CharacterCell" id="rxw-iW-LZd" customClass="CharacterTableViewCell" customModule="rickandmorty" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="44.5" width="414" height="120.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rxw-iW-LZd" id="sgZ-7b-3I0">
