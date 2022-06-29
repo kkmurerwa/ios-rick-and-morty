@@ -32,7 +32,7 @@
         <scene sceneID="lIH-Dt-e08">
             <objects>
                 <navigationController id="MdN-9O-5Sj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Characters" id="7zK-xs-9y0"/>
+                    <tabBarItem key="tabBarItem" title="Characters" image="characters" id="7zK-xs-9y0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="DOm-aY-OyO">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -49,7 +49,7 @@
         <scene sceneID="fFb-mR-t3D">
             <objects>
                 <navigationController id="aGv-GD-wz5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Episodes" id="SUW-Hu-HoN"/>
+                    <tabBarItem key="tabBarItem" title="Episodes" image="episodes" id="SUW-Hu-HoN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="6mn-8I-950">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -66,7 +66,7 @@
         <scene sceneID="4qX-Gd-TWW">
             <objects>
                 <navigationController id="dwe-Xd-fzq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" id="NfY-nX-YLI"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="locations" id="NfY-nX-YLI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8Lb-OL-MKY">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -467,6 +467,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="characters" width="25" height="25"/>
+        <image name="episodes" width="25" height="25"/>
+        <image name="locations" width="25" height="25"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
