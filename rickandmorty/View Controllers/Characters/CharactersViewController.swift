@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CharacterModelDelegate, LocationModelDelegate {
+class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CharacterModelDelegate, LocationModelDelegate {
     
     @IBOutlet weak var charactersTableView: UITableView!
     
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     
         // Get a reference to the detail view controller
-        let detailViewController = segue.destination as! DetailViewController
+        let detailViewController = segue.destination as! CharacterDetailViewController
         
         
         // Set the character property of the detail view controller

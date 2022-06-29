@@ -7,12 +7,10 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class CharacterDetailViewController: UIViewController {
     
     
     @IBOutlet weak var characterImageView: UIImageView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var genderLabel: UILabel!
     
@@ -28,11 +26,13 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Hide tab bar in this view
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         // Clear previous text
-        nameLabel.text = ""
         genderLabel.text = ""
         statusLabel.text = ""
         episodesLabel.text = ""
@@ -44,7 +44,10 @@ class DetailViewController: UIViewController {
             return
         }
         
-        nameLabel.text = character!.name
+        // Set title
+        title = character!.name
+        
+        // Set other fields
         genderLabel.text = character!.gender
         statusLabel.text = character!.status
         episodesLabel.text = "\(character!.episodes.count) Episode(s)"
@@ -52,6 +55,13 @@ class DetailViewController: UIViewController {
         
         // Load image
         ImageLoader.loadImage(from: character!.imageUrl, into: characterImageView)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        // Restore tab bar
+        self.tabBarController?.tabBar.isHidden = false
         
     }
 
