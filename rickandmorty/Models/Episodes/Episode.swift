@@ -12,6 +12,7 @@ struct Episode: Decodable {
     var episodeId = 0
     var name = ""
     var episodeTitle = ""
+    var dateAired = ""
     
     var characters = [String]()
     
@@ -21,6 +22,8 @@ struct Episode: Decodable {
         case name
         case episodeTitle = "episode"
         case characters
+        
+        case dateAired = "air_date"
         
     }
     
@@ -33,6 +36,8 @@ struct Episode: Decodable {
         self.name = try container.decode(String.self, forKey: .name)
         
         self.episodeTitle = try container.decode(String.self, forKey: .episodeTitle)
+        
+        self.dateAired = try container.decode(String.self, forKey: .dateAired)
         
         self.characters = try container.decode([String].self, forKey: .characters)
         

@@ -24,4 +24,8 @@ class Constants {
     
     static var CHARACTER_CELL_ID = "CharacterCell"
     
+    static var EPISODE_CELL_ID = "EpisodeCell"
+    
+    static var LOCATION_CELL_ID = "LocationCell"
+    
 }

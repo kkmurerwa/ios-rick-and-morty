@@ -17,6 +17,7 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Set table view data source and delegate as the viewcontroller(self)
         charactersTableView.dataSource = self
         charactersTableView.delegate = self
