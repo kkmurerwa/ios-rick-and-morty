@@ -14,7 +14,10 @@ struct Character : Decodable {
     var status = ""
     var species = ""
     var gender = ""
+    var homePlanet = ""
     var imageUrl = ""
+    
+    var episodes = [String]()
     
     enum CodingKeys: String, CodingKey {
         
@@ -24,6 +27,16 @@ struct Character : Decodable {
         case species
         case gender
         case imageUrl = "image"
+        
+        case episodes = "episode"
+        
+        case origin
+        
+    }
+    
+    enum CodingKeysOrigin: String, CodingKey {
+        
+        case homePlanet = "name"
         
     }
     
@@ -42,6 +55,12 @@ struct Character : Decodable {
         self.gender = try container.decode(String.self, forKey: .gender)
         
         self.imageUrl = try container.decode(String.self, forKey: .imageUrl)
+        
+        let originContainer = try container.nestedContainer(keyedBy: CodingKeysOrigin.self, forKey: .origin)
+        
+        self.homePlanet = try originContainer.decode(String.self, forKey: .homePlanet)
+        
+        self.episodes = try container.decode([String].self, forKey: .episodes)
     }
     
 }

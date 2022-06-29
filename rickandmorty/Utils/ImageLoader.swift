@@ -10,45 +10,36 @@ import UIKit
 
 class ImageLoader {
     
-    static func getLoadedImage(imageUrl: String) -> UIImage? {
-        
-        var uiImage: UIImage?
+    static func loadImage(from url: String, into imageView: UIImageView) {
+        print("Download Started")
         
         // Check image cache before downloading data
-        if let cachedData = ImageCacheManager.getImageCache(imageUrl) {
+        if let cachedData = ImageCacheManager.getImageCache(url) {
             
             // Return the thumbnailImageView from cache
-            uiImage = UIImage(data: cachedData)
+            imageView.image = UIImage(data: cachedData)
         } else {
-            
-            // Download the thumbnail data
-            let thumbnailUrl = URL(string: imageUrl)
+            // Convert Url string to URL object
+            let imageUrl = URL(string: url)
             
             // Get the shared url session object
             let session = URLSession.shared
             
             // Create Data task
-            let dataTask = session.dataTask(with: thumbnailUrl!) { (data, response, error) in
+            let dataTask = session.dataTask(with: imageUrl!) { (data, response, error) in
                 
                 if error == nil && data != nil {
                     // Check that downloaded URL matches the video thumbnail url
-                    if thumbnailUrl!.absoluteString != imageUrl {
+                    if imageUrl!.absoluteString != url {
                         // Video cell has been recycled for another video and no longer matches downloaded url
                         return
                     }
                     
-                    // Create the image object
-                    let image = UIImage(data: data!)
-                    
-                    ImageCacheManager.setImageCache(thumbnailUrl!.absoluteString, data)
+                    ImageCacheManager.setImageCache(imageUrl!.absoluteString, data)
                     
                     // Set the image object to imageview in main thread
                     DispatchQueue.main.async {
-                        uiImage = image
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        uiImage = nil
+                        imageView.image = UIImage(data: data!)
                     }
                 }
                 
@@ -58,9 +49,6 @@ class ImageLoader {
             dataTask.resume()
             
         }
-        
-        return uiImage
-        
     }
     
 }

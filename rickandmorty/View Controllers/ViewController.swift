@@ -32,6 +32,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    // MARK: - Segue methods
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Make sure that a character was selected
+        guard charactersTableView.indexPathForSelectedRow != nil else {
+            return
+        }
+        
+        // Get a reference to the character that was tapped on
+        let selectedCharacter = characters[charactersTableView.indexPathForSelectedRow!.row]
+        
+    
+        // Get a reference to the detail view controller
+        let detailViewController = segue.destination as! DetailViewController
+        
+        
+        // Set the character property of the detail view controller
+        detailViewController.character = selectedCharacter
+        
+    }
+    
     // MARK: - Network call response methods
     
     func charactersFetched(_ characters: [Character]) {
