@@ -14,6 +14,10 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
     var model = EpisodeModel()
     
     var episodes = [Episode]()
+    
+    var currentPage = 1
+    
+    var refreshTime: Date?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +30,7 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
         model.delegate = self
         
         // Initial network call
-        model.getEpisodes()
+        model.getEpisodes(page: currentPage)
     }
     
     
@@ -35,7 +39,7 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
     func episodesFetched(_ episodes: [Episode]) {
         
         // Set the returned characters to our characters property
-        self.episodes = episodes
+        self.episodes.append(contentsOf: episodes)
         
         // Update table view
         tableView.reloadData()
@@ -67,6 +71,49 @@ class EpisodesViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pos = scrollView.contentOffset.y
+        
+        if pos > tableView.contentSize.height - scrollView.frame.size.height{
+            
+            print("End reached")
+            
+            // Check if refreshDate is null
+            if refreshTime == nil {
+                
+                loadNextPage()
+                
+            } else  {
+                let currentTime = Date()
+                
+                // Find time difference
+                let timeDiff = Int(currentTime.timeIntervalSince1970 - refreshTime!.timeIntervalSince1970)
+                
+                print("Time Diff: \(timeDiff)")
+                
+                if timeDiff > 3 {
+                    
+                    loadNextPage()
+                    
+                }
+                
+            }
+        }
+    }
+    
+    func loadNextPage() {
+        
+        // Update refresh time
+        refreshTime = Date()
+        
+        // Update page value
+        currentPage += 1
+        
+        // Load next page
+        model.getEpisodes(page: currentPage)
+        
     }
     
 

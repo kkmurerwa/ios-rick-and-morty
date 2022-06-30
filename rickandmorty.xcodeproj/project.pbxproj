@@ -102,7 +102,6 @@
 		F51801FB2865EF9600B5F3F0 /* rickandmorty */ = {
 			isa = PBXGroup;
 			children = (
-				F56669B4286CEF26003460C2 /* New Group */,
 				F518020A2865EF9800B5F3F0 /* Info.plist */,
 				F51802152865EFF000B5F3F0 /* Assets */,
 				F51802112865EFB400B5F3F0 /* Delegates */,
@@ -219,13 +218,6 @@
 				F56669B2286CEA26003460C2 /* EpisodeModel.swift */,
 			);
 			path = Episodes;
-			sourceTree = "<group>";
-		};
-		F56669B4286CEF26003460C2 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		F58B52EC286604AF001F955D /* Characters */ = {

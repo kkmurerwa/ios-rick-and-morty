@@ -11,12 +11,10 @@ class CharacterModel {
     
     var delegate: CharacterModelDelegate?
     
-    func getCharacters() {
-        
-        print("Get characters method was called")
+    func getCharacters(page pageIndex: Int) {
         
         // Create a URL object
-        let url = URL(string: Constants.CHARACTERS_API_URL)
+        let url = URL(string: "\(Constants.CHARACTERS_API_URL)?page=\(pageIndex)")
         
         guard url != nil  else {
             print("URL is nil")
@@ -53,8 +51,6 @@ class CharacterModel {
                     }
                 
                 }
-                
-                dump(response)
                 
             } catch {
                 

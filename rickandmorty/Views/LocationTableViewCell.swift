@@ -30,6 +30,11 @@ class LocationTableViewCell: UITableViewCell {
     
     func setCell(_ passedLocation: Location) {
         
+        // Clear previous values on reused cell
+        self.nameLabel.text = ""
+        self.locationTypeLabel.text = ""
+        self.dimensionLabel.text = ""
+        
         self.location = passedLocation
         
         // Ensure that we the character object is not null to prevent crashes

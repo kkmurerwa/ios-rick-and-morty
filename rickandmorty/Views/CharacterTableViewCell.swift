@@ -32,6 +32,13 @@ class CharacterTableViewCell: UITableViewCell {
     
     func setCell(_ passedCharacter: Character) {
         
+        // Clear previous values on reused cell
+        self.characterImage.image = nil
+        
+        self.nameLabel.text = ""
+        self.genderLabel.text = ""
+        self.speciesLabel.text = ""
+        
         self.character = passedCharacter
         
         // Ensure that we the character object is not null to prevent crashes

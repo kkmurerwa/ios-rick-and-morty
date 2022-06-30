@@ -15,6 +15,9 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     
     var locations = [Location]()
     
+    var currentPage = 1
+    
+    var refreshTime: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         model.delegate = self
         
         // Invoke fetch data method of models
-        model.getLocations()
+        model.getLocations(page: currentPage)
     }
     
     
@@ -36,7 +39,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     func locationsFetched(_ locations: [Location]) {
         
         // Set the returned locations to our locations property
-        self.locations = locations
+        self.locations.append(contentsOf: locations)
         
         // Refresh tableview
         tableView.reloadData()
@@ -66,6 +69,49 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pos = scrollView.contentOffset.y
+        
+        if pos > tableView.contentSize.height - scrollView.frame.size.height{
+            
+            print("End reached")
+            
+            // Check if refreshDate is null
+            if refreshTime == nil {
+                
+                loadNextPage()
+                
+            } else  {
+                let currentTime = Date()
+                
+                // Find time difference
+                let timeDiff = Int(currentTime.timeIntervalSince1970 - refreshTime!.timeIntervalSince1970)
+                
+                print("Time Diff: \(timeDiff)")
+                
+                if timeDiff > 3 {
+                    
+                    loadNextPage()
+                    
+                }
+                
+            }
+        }
+    }
+    
+    func loadNextPage() {
+        
+        // Update refresh time
+        refreshTime = Date()
+        
+        // Update page value
+        currentPage += 1
+        
+        // Load next page
+        model.getLocations(page: currentPage)
         
     }
     

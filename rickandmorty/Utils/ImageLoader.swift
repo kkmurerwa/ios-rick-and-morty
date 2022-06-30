@@ -11,7 +11,6 @@ import UIKit
 class ImageLoader {
     
     static func loadImage(from url: String, into imageView: UIImageView) {
-        print("Download Started")
         
         // Check image cache before downloading data
         if let cachedData = ImageCacheManager.getImageCache(url) {

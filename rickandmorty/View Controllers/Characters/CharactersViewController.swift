@@ -14,6 +14,10 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
     var model = CharacterModel()
     
     var characters = [Character]()
+    
+    var currentPage = 1
+    
+    var refreshTime: Date?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +31,7 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         model.delegate = self
         
         // Invoke fetch data method of models
-        model.getCharacters()
+        model.getCharacters(page: currentPage)
         
     }
     
@@ -56,8 +60,9 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
     func charactersFetched(_ characters: [Character]) {
         
         // Set the returned characters to our characters property
-        self.characters = characters
+        self.characters.append(contentsOf: characters)
         
+        // Reload data
         charactersTableView.reloadData()
         
     }
@@ -85,6 +90,49 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pos = scrollView.contentOffset.y
+        
+        if pos > charactersTableView.contentSize.height - scrollView.frame.size.height{
+            
+            print("End reached")
+            
+            // Check if refreshDate is null
+            if refreshTime == nil {
+                
+                loadNextPage()
+                
+            } else  {
+                let currentTime = Date()
+                
+                // Find time difference
+                let timeDiff = Int(currentTime.timeIntervalSince1970 - refreshTime!.timeIntervalSince1970)
+                
+                print("Time Diff: \(timeDiff)")
+                
+                if timeDiff > 3 {
+                    
+                    loadNextPage()
+                    
+                }
+                
+            }
+        }
+    }
+    
+    func loadNextPage() {
+        
+        // Update refresh time
+        refreshTime = Date()
+        
+        // Update page value
+        currentPage += 1
+        
+        // Load next page
+        model.getCharacters(page: currentPage)
         
     }
     

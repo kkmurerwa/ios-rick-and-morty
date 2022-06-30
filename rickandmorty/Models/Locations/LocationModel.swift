@@ -11,12 +11,12 @@ class LocationModel {
     
     var delegate: LocationModelDelegate?
     
-    func getLocations() {
+    func getLocations(page pageIndex: Int) {
         
         print("Get locations method was called")
         
         // Create a URL object
-        let url = URL(string: Constants.LOCATIONS_API_URL)
+        let url = URL(string: "\(Constants.LOCATIONS_API_URL)?page=\(pageIndex)")
         
         guard url != nil  else {
             print("URL is nil")

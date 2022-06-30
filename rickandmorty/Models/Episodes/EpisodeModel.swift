@@ -11,12 +11,12 @@ class EpisodeModel {
     
     var delegate: EpisodeModelDelegate?
     
-    func getEpisodes() {
+    func getEpisodes(page pageIndex: Int) {
         
         print("Get episodes method was called")
         
         // Create a URL object
-        let url = URL(string: Constants.EPISODES_API_URL)
+        let url = URL(string: "\(Constants.EPISODES_API_URL)?page=\(pageIndex)")
         
         guard url != nil  else {
             print("URL is nil")

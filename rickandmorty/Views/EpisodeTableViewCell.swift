@@ -30,6 +30,12 @@ class EpisodeTableViewCell: UITableViewCell {
     
     func setCell(_ passedEpisode: Episode) {
         
+        // Clear previous values on reused cell
+        self.episodeNameLabel.text = ""
+        self.numberLabel.text = ""
+        self.dateAiredLabel.text = ""
+        
+        
         self.episode = passedEpisode
         
         // Ensure that we the character object is not null to prevent crashes
