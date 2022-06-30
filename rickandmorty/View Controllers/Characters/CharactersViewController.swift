@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SkeletonView
 
-class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CharacterModelDelegate {
+class CharactersViewController: UIViewController, SkeletonTableViewDataSource, UITableViewDelegate, CharacterModelDelegate {
     
     @IBOutlet weak var charactersTableView: UITableView!
     
@@ -25,18 +26,14 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         // Set table view data source and delegate as the viewcontroller(self)
         charactersTableView.dataSource = self
         charactersTableView.delegate = self
-        
+        charactersTableView.rowHeight = 120
+        charactersTableView.estimatedRowHeight = 120
         
         // Set model delegate as viewcontroller(self)
         model.delegate = self
         
         // Invoke fetch data method of models
-        model.getCharacters(page: currentPage)
-        
-        // Set up refreshing
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshCharacters), for: .valueChanged)
-        refreshControl.beginRefreshing()
+        self.model.getCharacters(page: self.currentPage)
         
     }
     
@@ -67,24 +64,40 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         // Set the returned characters to our characters property
         self.characters.append(contentsOf: characters)
         
+        // Hide skeleton view
+        charactersTableView.stopSkeletonAnimation()
+        view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+        
         // Reload data
         charactersTableView.reloadData()
         
     }
-    
-    @objc
-    func refreshCharacters() {
-        
-        // Reset current page
-        currentPage = 1
-        
-        // Reset characters list
-        self.characters = [Character]()
-        
-        // Reload data
-        model.getCharacters(page: currentPage)
-    }
 
+    // MARK: - Skeleton view methods
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if characters.count > 0 {
+            
+            charactersTableView.stopSkeletonAnimation()
+            view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+            
+        } else {
+            
+            charactersTableView.isSkeletonable = true
+            charactersTableView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .carrot), animation: nil, transition: .crossDissolve(0.25))
+            
+        }
+        
+        
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return Constants.CHARACTER_CELL_ID
+    }
+    
+    
     // MARK: - TableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,10 +118,6 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         
         // Return the cell for displaying
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
