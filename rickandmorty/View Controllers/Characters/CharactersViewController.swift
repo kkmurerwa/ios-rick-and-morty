@@ -18,6 +18,8 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
     var currentPage = 1
     
     var refreshTime: Date?
+    
+    private var shouldShowLoadingCell = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,11 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         
         // Invoke fetch data method of models
         model.getCharacters(page: currentPage)
+        
+        // Set up refreshing
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshCharacters), for: .valueChanged)
+        refreshControl.beginRefreshing()
         
     }
     
@@ -66,14 +73,38 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         charactersTableView.reloadData()
         
     }
+    
+    @objc
+    func refreshCharacters() {
+        
+        // Reset current page
+        currentPage = 1
+        
+        // Reset characters list
+        self.characters = [Character]()
+        
+        // Reload data
+        model.getCharacters(page: currentPage)
+    }
 
     // MARK: - TableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
+        
+        let count = characters.count
+        
+        return shouldShowLoadingCell ? count + 1 : count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if isLoadingIndexPath(indexPath) {
+            
+           return LoadingCell(style: .default, reuseIdentifier: "loading")
+        } else {
+           
+        }
+        
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CHARACTER_CELL_ID, for: indexPath) as! CharacterTableViewCell
         
@@ -135,6 +166,13 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         model.getCharacters(page: currentPage)
         
     }
+    
+    private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
+        guard shouldShowLoadingCell else { return false }
+        return indexPath.row == self.beers.count
+    }
+    
+    
     
 }
 
